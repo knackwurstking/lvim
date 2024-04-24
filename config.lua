@@ -25,7 +25,7 @@ lvim.plugins = {
             -- Load the colorscheme here.
             -- Like many other themes, this one has different styles, and you could load
             -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-            --vim.cmd.colorscheme 'tokyonight-night'
+            --vim.cmd.colorscheme 'tokyonight-:night'
             vim.cmd.colorscheme 'gruvbox'
 
             -- You can configure highlights by doing something like:
@@ -33,4 +33,21 @@ lvim.plugins = {
         end,
     },
     { 'ThePrimeagen/vim-be-good' }
+}
+
+lvim.autocommands._formatoptions = {}
+vim.opt.formatoptions = {
+    ["1"] = true,
+    ["2"] = true, -- Use indent from 2nd line of a paragraph
+    q = true,     -- Continue comments with gp"
+    c = false,    -- Auto warp comments using textwidth
+    r = true,     -- Continue comments when pressing Enter
+    n = true,     -- Recognize numbered lines
+    t = true,     -- Auto wrap lines using text width value
+    j = true,     -- Remove a comment leader when joining lines
+    -- Only break if the line was not longer than 'textwidth' when the insert
+    -- started and only at a white character that has been entered during the
+    -- current insert comment.
+    l = true,
+    v = true
 }
