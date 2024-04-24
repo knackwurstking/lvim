@@ -32,4 +32,5 @@ lvim.plugins = {
             vim.cmd.hi 'Comment gui=none'
         end,
     },
+    { 'ThePrimeagen/vim-be-good' }
 }
