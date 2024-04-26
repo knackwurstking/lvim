@@ -2,7 +2,8 @@
 -- Video Tutorials: https://www.youtube.com/watch?v=sFA9kX-Ud_c&list=PLhoH5vyxr6QqGu0i7tt_XoVK9v-KvZ3m6
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
-lvim.format_on_save = true -- Disable this line
+
+-- {{{ General Vim Options
 
 --vim.opt.cmdheight = 2         -- more space in the neovim command line for displaying messages
 --vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
@@ -11,9 +12,35 @@ vim.opt.tabstop = 4           -- insert 2 spaces for a tab
 vim.opt.relativenumber = true -- relative line numbers
 vim.opt.wrap = true           -- wrap lines
 
+-- }}}
+
+-- {{{ Fold Settings
+
+-- folding powered by treesitter
+-- https://github.com/nvim-treesitter/nvim-treesitter#folding
+-- look for foldenable: https://github.com/neovim/neovim/blob/master/src/nvim/options.lua
+-- Vim cheatsheet, look for folds keys: https://devhints.io/vim
+
+vim.opt.foldmethod = "marker"                   -- default is "normal"
+vim.opt.foldmarker = "{{{,}}}"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
+vim.opt.foldenable = true                       -- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
+--vim.opt.foldlevel = 99
+--vim.opt.foldlevelstart = 1
+
+-- }}}
+
+-- {{{ General LVim Options
+
+lvim.format_on_save = true -- Disable this line
 --lvim.colorscheme = "tokyonight-night"
 lvim.colorscheme = "catppuccin"
+
+-- }}}
+
 lvim.plugins = {
+    -- {{{ Color Schemes
+
     { -- You can easily change to a different colorscheme.
         -- Change the name of the colorscheme plugin below, and then
         -- change the command in the config to whatever the name of that colorscheme is.
@@ -33,33 +60,22 @@ lvim.plugins = {
             vim.cmd.hi 'Comment gui=none'
         end,
     },
-    { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
-    { 'ThePrimeagen/vim-be-good' },
-    { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+
     {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
         opts = {},
-    }
+    },
+
+    { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+
+    -- }}}
+
+    { 'ThePrimeagen/vim-be-good' }
 }
 
-lvim.autocommands._formatoptions = {}
-vim.opt.formatoptions = {
-    ["1"] = true,
-    ["2"] = true, -- Use indent from 2nd line of a paragraph
-    q = true,     -- Continue comments with gp"
-    c = true,     -- Auto warp comments using textwidth
-    r = true,     -- Continue comments when pressing Enter
-    n = true,     -- Recognize numbered lines
-    t = true,     -- Auto wrap lines using text width value
-    j = true,     -- Remove a comment leader when joining lines
-    -- Only break if the line was not longer than 'textwidth' when the insert
-    -- started and only at a white character that has been entered during the
-    -- current insert comment.
-    l = true,
-    v = true
-}
+-- {{{ Custom LSP Command: OrganizeImports
 
 local function organize_imports()
     local params = {
@@ -81,4 +97,7 @@ lsp_manager.setup("tsserver", {
         }
     },
 })
+
 lvim.keys.normal_mode["<leader>lo"] = "<cmd>OrganizeImports<CR>"
+
+-- }}}
