@@ -11,7 +11,8 @@ vim.opt.tabstop = 4           -- insert 2 spaces for a tab
 vim.opt.relativenumber = true -- relative line numbers
 vim.opt.wrap = true           -- wrap lines
 
-lvim.colorscheme = "gruvbox"
+--lvim.colorscheme = "tokyonight-night"
+lvim.colorscheme = "catppuccin"
 lvim.plugins = {
     { -- You can easily change to a different colorscheme.
         -- Change the name of the colorscheme plugin below, and then
@@ -32,25 +33,33 @@ lvim.plugins = {
             vim.cmd.hi 'Comment gui=none'
         end,
     },
-    { 'ThePrimeagen/vim-be-good' }
+    { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+    { 'ThePrimeagen/vim-be-good' },
+    { "catppuccin/nvim",         name = "catppuccin", priority = 1000 },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    }
 }
 
---lvim.autocommands._formatoptions = {}
---vim.opt.formatoptions = {
---    ["1"] = true,
---    ["2"] = true, -- Use indent from 2nd line of a paragraph
---    q = true,     -- Continue comments with gp"
---    c = false,    -- Auto warp comments using textwidth
---    r = true,     -- Continue comments when pressing Enter
---    n = true,     -- Recognize numbered lines
---    t = true,     -- Auto wrap lines using text width value
---    j = true,     -- Remove a comment leader when joining lines
---    -- Only break if the line was not longer than 'textwidth' when the insert
---    -- started and only at a white character that has been entered during the
---    -- current insert comment.
---    l = true,
---    v = true
---}
+lvim.autocommands._formatoptions = {}
+vim.opt.formatoptions = {
+    ["1"] = true,
+    ["2"] = true, -- Use indent from 2nd line of a paragraph
+    q = true,     -- Continue comments with gp"
+    c = true,     -- Auto warp comments using textwidth
+    r = true,     -- Continue comments when pressing Enter
+    n = true,     -- Recognize numbered lines
+    t = true,     -- Auto wrap lines using text width value
+    j = true,     -- Remove a comment leader when joining lines
+    -- Only break if the line was not longer than 'textwidth' when the insert
+    -- started and only at a white character that has been entered during the
+    -- current insert comment.
+    l = true,
+    v = true
+}
 
 local function organize_imports()
     local params = {
@@ -72,5 +81,4 @@ lsp_manager.setup("tsserver", {
         }
     },
 })
-
 lvim.keys.normal_mode["<leader>lo"] = "<cmd>OrganizeImports<CR>"
