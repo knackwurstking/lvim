@@ -35,6 +35,7 @@ vim.opt.foldenable = true                       -- if this option is true and fo
 lvim.format_on_save = true -- Disable this line
 --lvim.colorscheme = "tokyonight-night"
 lvim.colorscheme = "catppuccin"
+lvim.transparent_window = true
 
 -- }}}
 
