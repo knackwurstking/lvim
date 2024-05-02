@@ -37,6 +37,8 @@ lvim.format_on_save = true -- Disable this line
 lvim.colorscheme = "catppuccin"
 lvim.transparent_window = true
 
+lvim.keys.normal_mode["<leader>tt"] = "<cmd>ToggleTerm direction=float<CR>"
+
 -- }}}
 
 lvim.plugins = {
