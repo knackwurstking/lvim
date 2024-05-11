@@ -34,7 +34,8 @@ vim.opt.foldenable = true                       -- if this option is true and fo
 
 lvim.format_on_save = true -- Disable this line
 --lvim.colorscheme = "tokyonight-night"
-lvim.colorscheme = "catppuccin"
+--lvim.colorscheme = "catppuccin"
+lvim.colorscheme = "gruvbox"
 lvim.transparent_window = true
 
 lvim.keys.normal_mode["<leader>tt"] = "<cmd>ToggleTerm direction=float<CR>"
